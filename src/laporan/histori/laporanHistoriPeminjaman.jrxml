@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f610cf2b-2dc2-4c70-bf4c-3ec84be9deb8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT detail_peminjaman.id_peminjaman, nama_anggota, judul_buku, penulis, tanggal_pinjam, tanggal_kembali, detail_peminjaman.status 
+FROM detail_peminjaman
+INNER JOIN buku ON detail_peminjaman.id_buku = buku.id_buku 
+INNER JOIN peminjaman ON detail_peminjaman.id_peminjaman = peminjaman.id_peminjaman 
+INNER JOIN anggota ON peminjaman.id_anggota = anggota.id_anggota 
+WHERE anggota.id_anggota = $P!{id}
+ORDER BY detail_peminjaman.id_peminjaman]]>
+	</queryString>
+	<field name="id_peminjaman" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_anggota" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="judul_buku" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="penulis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_pinjam" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_kembali" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="33" y="0" width="775" height="62" uuid="9781a1f1-1662-46d7-8bfd-c50fecb120e9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="44" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[LAPORAN HISTORI PEMINJAMAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="298" y="65" width="221" height="22" uuid="c6b8f2ac-e3b6-4f12-9e9d-2fde84c7ddd5"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[PEMINJAMAN ANGGOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="94" width="368" height="42" uuid="5539f90a-c113-47aa-a19f-16eb5b66c1fc"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ini adalah laporan histori seluruh peminjaman buku anda di perpustakaan, simpan laporan ini baik-baik]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="1f94a724-29e6-4b21-85c2-5d036716b8b1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="33" height="15" forecolor="#736343" uuid="a1f759c6-edb0-40e9-80ee-3668678702d0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="33" y="0" width="137" height="15" forecolor="#736343" uuid="835da34b-51d6-4799-b670-4811c7d8d0dc"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[NAMA ANGGOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="175" y="0" width="145" height="15" forecolor="#736343" uuid="f27e3e2e-4698-4ac4-961b-933b07a197c5"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[JUDUL BUKU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="320" y="0" width="122" height="15" forecolor="#736343" uuid="b2bd7f3d-33e2-43ea-a5b2-9933dcb1e409"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PENULIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="442" y="1" width="114" height="15" forecolor="#736343" uuid="d9c3ca65-2804-4f67-be63-164e1e17825e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DIPINJAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="556" y="1" width="114" height="15" forecolor="#736343" uuid="c5742bd3-d649-4f6f-b22e-5ed4a0e92d07"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DIKEMBALIKAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="670" y="0" width="131" height="15" forecolor="#736343" uuid="eb9cda10-8e40-4961-9c05-01bfba40f7c2"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="2ea8040e-352f-448e-b91e-c78e1c8fb55e"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="33" height="15" uuid="b69ecd07-807d-44a9-917e-c3b5e26eede1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{id_peminjaman}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="320" y="0" width="122" height="15" uuid="581f6486-57fe-4d89-9c32-7772f352a10e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{penulis}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+					<reportElement style="Detail" x="556" y="0" width="114" height="15" uuid="82ae981e-2ea7-4e56-8380-36033baf8cac"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tanggal_kembali}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="670" y="0" width="131" height="15" uuid="2061d362-42a0-4ab8-b741-d5f0a661f17c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="33" y="0" width="137" height="15" uuid="35e943a0-a82a-4f55-972f-71460b956a62"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{nama_anggota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+					<reportElement style="Detail" x="442" y="0" width="114" height="15" uuid="33d826c7-d937-41b1-9158-7cdcae7921fe"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tanggal_pinjam}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="175" y="0" width="145" height="15" uuid="d3ade16e-e4b7-48bb-9477-4598ab708c23"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{judul_buku}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="1bf54452-097f-456e-aa76-45a45af6b927"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="c028b52e-7bad-4032-8661-55c267fcd9aa"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="149a133b-9cf8-45c7-b661-0f47c9d19a92"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="6c5ebd32-a6f7-4b08-833b-b81b21223a06"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="1c46bce8-9d34-4ad1-878a-66b2e88cc672"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
